@@ -1,0 +1,51 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is validating Files
+on: 
+  pull_request:
+    branches:
+      - master
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-branches
+ 
+permissions:
+  contents: read
+  pull-requests: write # enable write permissions for pull request comments
+
+jobs:
+  YAML-Validator:
+      runs-on: ubuntu-latest
+
+      steps:
+        # checkout the repository (required for this Action to work)
+        - uses: actions/checkout@v4
+
+        # validate JSON and YAML files
+        - name: json-yaml-validate
+          id: yaml-validator
+          uses: GrantBirki/json-yaml-validate@v2.7.1
+          with:
+            comment: "true" # enabling comments on PR
+            paths: |
+              .github/
+              ./
+
+  Python-code-exec:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        # using requirements file
+        # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#requirements-file
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install -r Tests/requirements.txt
+
+        - name: Json-syntax-validate
+          env:
+            INPUT_FILE: infra/template.json
+          run: python Tests/validator-json.py
+
+
+

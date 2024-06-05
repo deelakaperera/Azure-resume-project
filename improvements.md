@@ -1,0 +1,1 @@
+strageaccount name validtaion

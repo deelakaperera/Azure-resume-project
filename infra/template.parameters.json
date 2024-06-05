@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_dp_func_deployment_name": {
+            "value": "dp-func-deployment"
+        },
+        "storageAccounts_dpstacctest_name": {
+            "value": "dpstacctest"
+        },
+        "databaseAccounts_dpcosmos51_name": {
+            "value": "dpcosmos51"
+        },
+        "serverfarms_ASP_dp_func_deployment_b5e8_name": {
+            "value": "ASP-dp-func-deployment-b5e8"
+        },
+        "actionGroups_Application_Insights_Smart_Detection_name": {
+            "value": "Application Insights Smart Detection"
+        },
+        "tags_mode": {
+            "value": "arm"
+        }
+    }
+}
